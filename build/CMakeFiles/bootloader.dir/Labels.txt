@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/CMakeFiles/bootloader
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/CMakeFiles/bootloader.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/CMakeFiles/bootloader-complete.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

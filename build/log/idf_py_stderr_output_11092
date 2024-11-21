@@ -1,0 +1,24 @@
+Including esp_timer in color
+CMake Error:
+  Running
+
+   'C:/Users/nithi/.espressif/tools/ninja/1.11.1/ninja.exe' '-C' 'E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build' '-t' 'recompact'
+
+  failed with:
+
+   ninja: error: failed recompaction: Permission denied
+
+
+
+CMake Error:
+  Running
+
+   'C:/Users/nithi/.espressif/tools/ninja/1.11.1/ninja.exe' '-C' 'E:/Biostim/KadamV4/KadamV4_app/esp-idf-lib-master/examples/icm42670/default/build' '-t' 'restat' 'build.ninja'
+
+  failed with:
+
+   ninja: error: failed recompaction: Permission denied
+
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
