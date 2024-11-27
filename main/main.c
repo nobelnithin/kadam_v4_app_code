@@ -1233,6 +1233,35 @@ void Blink_Task(void *params)
     }
 }
 
+void handle_vbus_change(bool plugged_in)
+{
+    if (plugged_in)
+    {
+        printf("Charging....!\n");
+        vbus_flag=false;
+        isLed_menu = false;
+        isLed_setup = false;
+        isLed_walk = false;
+        gpio_set_level(LED_BLUE1,1);
+        gpio_set_level(LED_BLUE2,1);
+        gpio_set_direction(RGB_GREEN,GPIO_MODE_OUTPUT);
+        gpio_set_level(RGB_GREEN,0);
+        gpio_set_level(SEG_A_GPIO, 1);
+        gpio_set_level(SEG_B_GPIO, 1);
+        gpio_set_level(SEG_C_GPIO, 0);
+        gpio_set_level(SEG_D_GPIO, 0);
+        gpio_set_level(SEG_E_GPIO, 1);
+        gpio_set_level(SEG_F_GPIO, 1);
+        gpio_set_level(SEG_G_GPIO, 1);
+    }
+    else
+    {
+        printf("pluged out....!\n");
+        vbus_flag=true;
+        led_menu();
+    }
+}
+
 
 void VBUS_INTRTask(void *params)
 {
@@ -1244,33 +1273,8 @@ void VBUS_INTRTask(void *params)
         if (xQueueReceive(VBUS_INTRQueue, &BTN_NUMBER, portMAX_DELAY))
         {
             
-            if(vbus_flag)
-            {
-                printf("Charging....!\n");
-                vbus_flag=false;
-                isLed_menu = false;
-                isLed_setup = false;
-                isLed_walk = false;
-                gpio_set_level(LED_BLUE1,1);
-                gpio_set_level(LED_BLUE2,1);
-                gpio_set_direction(RGB_GREEN,GPIO_MODE_OUTPUT);
-                gpio_set_level(RGB_GREEN,0);
-            gpio_set_level(SEG_A_GPIO, 1);
-            gpio_set_level(SEG_B_GPIO, 1);
-            gpio_set_level(SEG_C_GPIO, 0);
-            gpio_set_level(SEG_D_GPIO, 0);
-            gpio_set_level(SEG_E_GPIO, 1);
-            gpio_set_level(SEG_F_GPIO, 1);
-            gpio_set_level(SEG_G_GPIO, 1);
-
-            }
-            else if(!vbus_flag)
-            {
-                printf("pluged out....!\n");
-                vbus_flag=true;
-                led_menu();
-            }
-
+            bool vbus_status = gpio_get_level(VBUS_INTR);
+            handle_vbus_change(vbus_status);
   
             xQueueReset(VBUS_INTRQueue);
         }
@@ -1538,5 +1542,8 @@ void app_main(void)
     xTaskCreatePinnedToCore(icm42670_test, "icm42670_test", configMINIMAL_STACK_SIZE * 8, NULL, 5, NULL, APP_CPU_NUM);
     xTaskCreatePinnedToCore(gait_detect, "set fire", configMINIMAL_STACK_SIZE * 8, NULL, 5, NULL, APP_CPU_NUM);
     led_menu();
+    bool vbus_state = gpio_get_level(VBUS_INTR);
+    handle_vbus_change(vbus_state);
+    
     start_webserver();
 }
