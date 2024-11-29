@@ -584,7 +584,7 @@ void display_error()
     vTaskDelay(1000 / portTICK_PERIOD_MS);
 }
 
-void get_battery_voltage() {
+void Check_Stimulation_voltage() {
     // Set up ADC configuration
     // adc2_config_width(ADC_WIDTH);
     adc1_config_channel_atten(ADC_CHANNEL, ADC_ATTEN);
@@ -1082,9 +1082,9 @@ void Stimul(void *params)
                 gpio_set_level(IN2, 0);
                 if((i==2 && setup_cursor!=0) || (i==19 && setup_cursor!=0)  || (i==11 && setup_cursor!=0) || (i==6 && setup_cursor!=0)  || (i==16 && setup_cursor!=0))
                 {
-                    get_battery_voltage();
+                    Check_Stimulation_voltage();
                 }
-                // get_battery_voltage();
+                // Check_Stimulation_voltage();
                 ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL,STIMStrength[setup_cursor] ));
                 ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
                 vTaskDelay(10 / portTICK_PERIOD_MS);
@@ -1122,7 +1122,7 @@ void Stimul(void *params)
                     gpio_set_level(IN1, 1);
                     gpio_set_level(IN2, 0);
                     if((i==1 && setup_cursor!=0) || (i==19 && setup_cursor!=0)  || (i==11 && setup_cursor!=0) || (i==6 && setup_cursor!=0)  || (i==16 && setup_cursor!=0))
-                      get_battery_voltage();
+                      Check_Stimulation_voltage();
                     ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL,STIMStrength[setup_cursor]));
                     ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
                     vTaskDelay(10/ portTICK_PERIOD_MS);
